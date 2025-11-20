@@ -1,0 +1,698 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: 'Vesper Libre', serif;
+    background-color: rgb(0, 0, 0);
+    color: #1e1e1e;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+.desktop-container {
+    width: 100%;
+    position: relative;
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Frame styles */
+.frame {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.frame-1 {
+    min-height: 55vw;
+    max-height: 811px;
+    background-color: #f5f5f5;
+}
+
+.frame-2 {
+    min-height: 55vw;
+    max-height: 810px;
+    background-color: white;
+}
+
+.frame-3 {
+    min-height: 110vw;
+    max-height: 1621px;
+    background-color: rgb(255, 255, 255);
+}
+
+.frame-4 {
+    min-height: 55vw;
+    max-height: 813px;
+    background-color: rgb(0, 0, 0);
+}
+
+.frame-5 {
+    min-height: 55vw;
+    max-height: 810px;
+    background-color: white;
+}
+
+.frame-6 {
+    min-height: 55vw;
+    max-height: 813px;
+    background-color: white;
+}
+
+/* Image layers */
+.image-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.image-layer img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* By default full-bleed image layers should not capture pointer events so
+   interactive elements underneath or above can receive hover/clicks. */
+.image-layer img {
+    pointer-events: none;
+}
+
+/* Enable pointer events for specific interactive elements and bring them to front */
+#hand,
+#snail-shell-1,
+#F4-inside,
+#F5-hand {
+    pointer-events: auto;
+    position: relative;
+    z-index: 30;
+    cursor: pointer;
+}
+
+.grass-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.25;
+    overflow: hidden;
+    display: block;
+    
+}
+
+.grass-overlay img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Text overlay styles */
+.text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    width: auto;
+    max-width: 90%;
+    text-align: left;
+    padding: 2vw;
+}
+
+.centered-text {
+    text-align: center;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Special positioning for frame 2 */
+.frame-2 .text-overlay {
+    top: 50%;
+    bottom: auto;
+    left: clamp(20px, 5vw, 223px);
+    transform: translate(0, -50%);
+    max-width: clamp(300px, 90%, 463px);
+}
+
+/* Special positioning for frame 3 */
+.frame-3 .text-overlay {
+    top: auto;
+    bottom: clamp(100px, 12vw, 200px);
+    left: clamp(20px, 5vw, 82px);
+    transform: none;
+    max-width: clamp(300px, 90%, 463px);
+}
+
+/* Special positioning for frame 4 */
+.frame-4 .text-overlay {
+    top: clamp(30px, 10vw, 83px);
+    bottom: auto;
+    left: clamp(20px, 5vw, 82px);
+    transform: none;
+    max-width: clamp(300px, 90%, 463px);
+}
+
+/* Special positioning for frame 5 */
+.frame-5 .text-overlay {
+    top: auto;
+    bottom: clamp(30px, 6vw, 50px);
+    left: clamp(20px, 5vw, 62px);
+    transform: none;
+    max-width: clamp(300px, 90%, 713px);
+}
+
+/* Special positioning for frame 6 (last frame) */
+.frame-6 .final-overlay {
+    top: clamp(50px, 50vw, 407px);
+    left: clamp(20px, 5vw, 62px);
+    bottom: auto;
+    transform: none;
+    max-width: clamp(300px, 85%, 713px);
+}
+
+/* Text section styles */
+.text-section {
+    position: relative;
+    width: 100%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(20px, 5vw, 40px);
+    min-height: 250px;
+}
+
+.black-bg {
+    background-color: #000000;
+    min-height: 31vw;
+    max-height: 460px;
+}
+
+.white-section {
+    position: relative;
+    width: 100%;
+    flex-shrink: 0;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: clamp(40px, 10vw, 80px) clamp(20px, 5vw, 40px);
+    min-height: 400px;
+}
+
+.text-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.white-content {
+    max-width: 674px;
+    position: relative;
+    z-index: 5;
+}
+
+/* Poem text styles */
+.poem-text {
+    font-family: 'Vesper Libre', serif;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0.96px;
+    color: #1e1e1e;
+    margin: 0;
+    word-spacing: normal;
+    white-space: normal;
+    word-break: break-word;
+    animation-name: moveText-1;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+.title-text {
+    font-family: 'UnifrakturMaguntia', serif;
+    font-size: 80px;
+    font-weight: 400;
+    letter-spacing: -1.76px;
+    color: #ff0000;
+}
+
+.frame4-text {
+    letter-spacing: -0.608px;
+    font-weight: 400;
+}
+
+.frame5-text {
+    letter-spacing: -0.608px;
+    font-weight: 400;
+}
+
+.black-bg .poem-text {
+    color: white;
+}
+
+.black-bg .title-text {
+    color: #ff0000;
+}
+
+.attribution {
+    font-family: 'UnifrakturCook', serif;
+    font-size: clamp(30px, 6vw, 48px);
+    font-weight: 700;
+    line-height: 1.5;
+    color: white;
+    margin-top: 20px;
+    text-align: right;
+    letter-spacing: -1.76px;
+}
+
+.final-text {
+    font-size: clamp(18px, 3.5vw, 32px);
+    line-height: 1.5;
+    letter-spacing: -0.608px;
+    font-family: 'Vesper Libre', serif;
+    font-weight: 400;
+}
+
+/* Highlight for red text */
+.highlight {
+    color: #ff0000;
+}
+
+/* Black divider */
+.black-divider {
+    width: 100%;
+    flex-shrink: 0;
+    min-height: 200px;
+    max-height: 334px;
+    height: 23vw;
+    background-color: #000000;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .poem-text {
+        font-size: clamp(18px, 5vw, 24px);
+    }
+    
+    .attribution {
+        font-size: clamp(20px, 5vw, 30px);
+    }
+    
+    .frame-1,
+    .frame-2,
+    .frame-4,
+    .frame-5,
+    .frame-6 {
+        min-height: 60vw;
+        max-height: none;
+    }
+    
+    .frame-3 {
+        min-height: 120vw;
+        max-height: none;
+    }
+    
+    .text-section {
+        min-height: auto;
+        padding: clamp(20px, 5vw, 40px);
+    }
+    
+    .white-section {
+        min-height: auto;
+        padding: clamp(30px, 8vw, 60px) clamp(20px, 5vw, 40px);
+    }
+}
+
+
+/*animating*/
+#hand  {
+    position: absolute;
+   
+    animation-name: moveHand;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+#snail-shell-1 {
+    position: relative;
+    animation-name: moveSnail;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    transition: 0.5s;
+    transition-timing-function: ease-in; 
+}
+
+.text-content {
+    position:relative;
+    animation-name: moveText;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    
+}
+
+#eye-1  {
+    position: relative;
+    animation-name: moveEye1;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-delay: 1s;
+    ;
+}
+
+#eye-2  {
+    position: relative;
+    animation-name: moveEye2;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-delay: 1.5s;
+}
+
+#eye-3  {
+    position: relative;
+    animation-name: moveEye3;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-delay: 2s;
+}
+
+
+#eye-4  {
+    position: relative;
+    animation-name: moveEye4;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-delay: 2.5s;
+}
+
+
+
+#F2-human {
+    position:relative;
+    animation-name: moveHuman;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    
+}
+#F2-shell {
+    position: relative;
+    animation-name: moveShell;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#F3-graphic {
+    position: relative;
+    animation-name: moveGraphic;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+
+}
+
+#F3-water {
+    position: relative;
+    animation-name: moveWater;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+
+}
+
+#F3-hand {
+    position: relative;
+    animation-name: moveHand;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+
+}
+
+#F4-inside {
+    position: relative;
+    animation-name: F4-inside;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    transform-origin: center;
+    display: inline-block;
+    animation-timing-function: ease-in-out;
+
+}
+
+#F4-eye {
+    position: relative;
+    animation-name: F4-eye1;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-delay: 0.5s;
+    transition: 0.3s;
+    transition-timing-function: ease-in-out;
+
+}
+
+#F4-decor {
+    position: relative;
+    animation-name: F4-Decoration;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-delay: 0.5s;
+    animation-timing-function: ease-in-out;;
+
+}
+
+#F5-cream {
+    position: relative;
+    animation-name: F5-cream;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-delay: 0.75s;
+    animation-timing-function: ease-in-out;;
+
+}
+
+#F5-hand {
+    position: relative;
+    animation-name: F5-hand;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: ease-out;
+    transition-timing-function: ease-out;
+    transition: ease-out;
+}
+
+#grass-1  {
+    opacity: 0.5;
+    position: relative;   
+}
+
+
+
+
+
+
+#F5-jean {
+    position: relative;
+    animation-name: F5-jean;
+    animation-duration: 4.5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: ease-out;
+    animation-delay: 2s;
+}
+
+#F5-white {
+    position: relative;
+    animation-name: F5-white;
+    animation-duration: 4.5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: ease-out;
+    animation-delay: 1s;
+}
+
+#first-text {
+    margin-top: 100px;
+    margin-left: 50%;
+    color: rgb(255, 0, 0);
+    animation-delay: 1s;
+    animation-name: FirstText;
+    animation-duration: 2s;
+    position: relative;
+    
+}
+
+#fourthText {
+    animation-delay: 1s;
+    animation-name: FirstText;
+    animation-duration: 2s;
+    position: relative;
+    color: white;
+}
+
+/* Keyframes for animations */
+
+@keyframes FirstText {
+    0% { opacity: 0; transform: translateX(0px); }
+    100% { opacity: 1; transform: translateX(10px); }
+}
+
+
+
+@keyframes F5-white {
+    0%  { opacity: 0%;}
+    100% { opacity: 100%;}
+}
+
+
+
+
+
+
+
+
+@keyframes F5-jean {
+    0%  { opacity: 0%;}
+    100% { opacity: 100%;}
+}
+
+@keyframes F5-cream {
+  
+    0%  { opacity:50%;}
+    100% { opacity:100%;}
+}
+
+
+
+@keyframes moveWater {
+    0%  { opacity:50%;}
+    100% { opacity:100%;}
+}
+
+@keyframes F5-hand {
+    0% { transform: translateY(0px) scale(1); }
+    100% { transform: translateY(20px) scale(1.2); }
+}
+
+@keyframes F4-Decoration {
+  
+   0% { transform: scale(1);}
+    100% { transform: scale(1.5);}
+}
+
+
+
+
+
+@keyframes F4-inside {
+    0%  { opacity:25%;}
+    100% { opacity:100%;}
+    
+
+}
+
+
+
+@keyframes moveGraphic {
+    0% { transform: scale(1) rotate(0deg); }
+    100% { transform: scale(1.1) rotate(10deg); }
+}
+
+@keyframes moveText-1 {
+    0% { top: 0px; opacity: 0; }
+    100% { top: 10px; opacity: 1; }
+}
+
+@keyframes moveHuman {
+    0%  { opacity: 0%;}
+    100% { opacity: 100%;}
+    0% { transform: rotate(0deg); }
+   100% { transform: rotate(5deg); }
+}
+
+
+@keyframes moveEye1 {
+    0% { opacity: 0; transform: translateY(0px); }
+    100% { opacity: 1; transform: translateY(10px); }
+}
+
+@keyframes moveEye2 {
+    0% { opacity: 0; transform: translateY(0px); }
+    100% { opacity: 1; transform: translateY(10px); }
+}
+
+@keyframes moveEye3 {
+    0% { opacity: 0; transform: translateY(0px); }
+    100% { opacity: 1; transform: translateY(10px); }
+}
+
+@keyframes moveEye4 {
+    0% { opacity: 0; transform: translateY(0px); }
+    100% { opacity: 1; transform: translateY(10px); }
+}
+
+
+
+@keyframes moveText {
+    0%  { top: 0px;}
+    100% { top: 10px;}
+    0% { opacity: 0%;}
+    100% { opacity: 100%;}
+}
+
+@keyframes moveHand {
+    0%  { transform:scale(1)}
+    100% { transform:scale(1.05)}
+} 
+
+@keyframes moveSnail {
+    0%  { transform: scale(1)}
+    100% { transform: scale(1.2)}
+}
+
+/* Hover effects to pause animations and scale up elements */
+
+
+#snail-shell-1:hover {
+    transform: scale(1.5);
+    animation-play-state: paused;
+   
+}
+#F4-inside:hover {
+    animation-play-state: paused;
+   
+}
+
+#F5-hand:hover {
+    transform: translateY(30px) scale(1.5);
+    animation-play-state: paused;
+   
+}
